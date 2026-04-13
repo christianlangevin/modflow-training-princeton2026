@@ -90,6 +90,6 @@ If the software installation failed, it may be possible to run the jupyter noteb
 
 ## Groundwater Modeling and More 2026
 
-This workshop is part of the [MODFLOW and More Conference](https://igwmc.princeton.edu/groundwater-modeling-and-more/).
+This workshop is part of the [Groundwater Modeling and More Conference](https://igwmc.princeton.edu/groundwater-modeling-and-more/).
 
 ![alt](images/Final-logo-2026.png)
