@@ -67,7 +67,6 @@ ipywidgets = "*"
 xugrid = "*"
 
 # flopy
-flopy = "*"
 pymetis = "*"
 rasterio = "*"
 rasterstats = "*"
@@ -75,7 +74,7 @@ ffmpeg = "*"
 
 [pypi-dependencies]
 modflow-devtools = { git = "https://github.com/MODFLOW-ORG/modflow-devtools.git", extras = ["dfn"] }
-# cdl flopy = { git = "https://github.com/modflowpy/flopy.git" }
+flopy = { git = "https://github.com/modflowpy/flopy.git" }
 
 [target.unix.dependencies]
 # build dependencies
@@ -86,7 +85,6 @@ ninja = "*"
 pkg-config = "*"
 
 # extended build dependencies
-libnetcdf = "*"
-netcdf-fortran = "*"
 openmpi = "*"
 petsc = ">=3.20,<3.23"
+netcdf-fortran = "*"
