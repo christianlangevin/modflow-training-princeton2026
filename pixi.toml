@@ -42,7 +42,7 @@ obtain-modflow = { depends-on = [
 clone-modflow-win = { cmd = "rm -rf modflow6; git clone https://github.com/MODFLOW-ORG/modflow6.git" }
 download-modflow-win = { cmd = "python -c 'from urllib.request import urlretrieve; urlretrieve(\"https://github.com/MODFLOW-ORG/modflow6-nightly-build/releases/download/20260520/win64ext.zip\", \"win64ext.zip\")'" , outputs=["win64ext.zip"]}
 unzip-modflow-win = { cmd = "python -c 'import shutil; shutil.unpack_archive(\"win64ext.zip\", \"win64ext\")'" }
-install-modflow-win = {cmd = "python -c 'import shutil; import glob; shutil.copytree(glob.glob(\"win64ext/**/bin\")[0], \".pixi/envs/default/bin\", dirs_exist_ok=True)'" }
+install-modflow-win = { cmd = "python -c \"import shutil, glob, os; shutil.copytree(glob.glob('win64ext/**/bin')[0], os.path.join(os.environ['CONDA_PREFIX'], 'bin'), dirs_exist_ok=True)\"" }
 obtain-modflow = { depends-on = [
   "clone-modflow-win",
   "update-dependencies",
