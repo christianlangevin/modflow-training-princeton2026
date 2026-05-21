@@ -1,0 +1,92 @@
+[workspace]
+name = "mf6xtd"
+version = "1.0.0"
+channels = ["conda-forge"]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+
+[system-requirements]
+linux = "4.4.0"
+
+[tasks]
+# install environment
+update-dependencies = "pixi update flopy modflow-devtools"
+update-flopy-dfn = { cmd = "python -m flopy.mf6.utils.generate_classes --dfnpath modflow6/doc/mf6io/mf6ivar/dfn" }
+test-installation = { cmd = "python test_installation.py", cwd = "installation" }
+get-flopy4 = { cmd = "pip install git+https://github.com/modflowpy/pyphoenix-project.git@develop" }
+install = { depends-on = [
+  "obtain-modflow",
+  "get-flopy4",
+  "test-installation",
+] }
+
+# run jupyter lab
+jupyter = { cmd = "jupyter lab" }
+
+[target.unix.tasks]
+update-pc-files = { cmd = "python update_pc_files.py", cwd = "installation" }
+clone-modflow = "rm -rf modflow6/ && git clone https://github.com/MODFLOW-USGS/modflow6.git"
+setup-modflow = { cmd = "PKG_CONFIG_PATH=$PIXI_PROJECT_ROOT/.pixi/envs/default/lib/pkgconfig && rm -rf builddir && meson setup builddir -Ddebug=false -Dextended=true --prefix=$PIXI_PROJECT_ROOT/.pixi/envs/default/", cwd = "modflow6" }
+install-modflow = { cmd = "meson install -C builddir", cwd = "modflow6" }
+test-modflow = { cmd = "meson test --verbose --no-rebuild -C builddir", cwd = "modflow6" }
+obtain-modflow = { depends-on = [
+  "update-pc-files",
+  "clone-modflow",
+  "update-dependencies",
+  "update-flopy-dfn",
+  "setup-modflow",
+  "install-modflow",
+  "test-modflow",
+] }
+
+[target.win-64.tasks]
+clone-modflow-win = { cmd = "rm -rf modflow6; git clone https://github.com/MODFLOW-USGS/modflow6.git" }
+download-modflow-win = { cmd = "python -c 'from urllib.request import urlretrieve; urlretrieve(\"https://github.com/MODFLOW-USGS/modflow6-nightly-build/releases/download/20251007/win64ext.zip\", \"win64ext.zip\")'" , outputs=["win64ext.zip"]}
+unzip-modflow-win = { cmd = "python -c 'import shutil; shutil.unpack_archive(\"win64ext.zip\", \"win64ext\")'" }
+install-modflow-win = {cmd = "python -c 'import shutil; import glob; shutil.copytree(glob.glob(\"win64ext/**/bin\")[0], \".pixi/envs/default/bin\", dirs_exist_ok=True)'" }
+obtain-modflow = { depends-on = [
+  "clone-modflow-win",
+  "update-dependencies",
+  "update-flopy-dfn",
+  "download-modflow-win",
+  "unzip-modflow-win",
+  "install-modflow-win",
+] }
+
+[dependencies]
+# required
+git = "*"
+jupyterlab = "*"
+matplotlib = ">=1.4.0"
+numpy = ">=1.15.0"
+pip = "*"
+pytest = "*"
+python = ">=3.10,<3.13"
+
+# notebooks
+ipywidgets = "*"
+xugrid = "*"
+
+# flopy
+flopy = "*"
+pymetis = "*"
+rasterio = "*"
+rasterstats = "*"
+ffmpeg = "*"
+
+[pypi-dependencies]
+modflow-devtools = { git = "https://github.com/MODFLOW-ORG/modflow-devtools.git", extras = ["dfn"] }
+# cdl flopy = { git = "https://github.com/modflowpy/flopy.git" }
+
+[target.unix.dependencies]
+# build dependencies
+clang = "*"
+gfortran = "*"
+meson = ">=1.3.0"
+ninja = "*"
+pkg-config = "*"
+
+# extended build dependencies
+libnetcdf = "*"
+netcdf-fortran = "*"
+openmpi = "*"
+petsc = ">=3.20,<3.23"
