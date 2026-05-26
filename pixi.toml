@@ -2,7 +2,9 @@
 name = "mf6xtd"
 version = "1.0.0"
 channels = ["conda-forge"]
-platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+
+# for intel Mac add "osx-64" to platforms
+platforms = ["linux-64", "linux-aarch64", "osx-arm64", "win-64"]
 
 [system-requirements]
 linux = "4.4.0"
@@ -12,10 +14,8 @@ linux = "4.4.0"
 update-dependencies = "pixi update flopy modflow-devtools"
 update-flopy-dfn = { cmd = "python -m flopy.mf6.utils.generate_classes --dfnpath modflow6/doc/mf6io/mf6ivar/dfn" }
 test-installation = { cmd = "python test_installation.py", cwd = "installation" }
-get-flopy4 = { cmd = "pip install git+https://github.com/modflowpy/pyphoenix-project.git@develop" }
 install = { depends-on = [
   "obtain-modflow",
-  "get-flopy4",
   "test-installation",
 ] }
 
@@ -40,7 +40,7 @@ obtain-modflow = { depends-on = [
 
 [target.win-64.tasks]
 clone-modflow-win = { cmd = "rm -rf modflow6; git clone https://github.com/MODFLOW-ORG/modflow6.git" }
-download-modflow-win = { cmd = "python -c 'from urllib.request import urlretrieve; urlretrieve(\"https://github.com/MODFLOW-ORG/modflow6-nightly-build/releases/download/20260520/win64ext.zip\", \"win64ext.zip\")'" , outputs=["win64ext.zip"]}
+download-modflow-win = { cmd = "python -c 'from urllib.request import urlretrieve; urlretrieve(\"https://github.com/MODFLOW-ORG/modflow6-nightly-build/releases/download/20260525/win64ext.zip\", \"win64ext.zip\")'" , outputs=["win64ext.zip"]}
 unzip-modflow-win = { cmd = "python -c 'import shutil; shutil.unpack_archive(\"win64ext.zip\", \"win64ext\")'" }
 install-modflow-win = { cmd = "python -c \"import shutil, glob, os; shutil.copytree(glob.glob('win64ext/**/bin')[0], os.path.join(os.environ['CONDA_PREFIX'], 'bin'), dirs_exist_ok=True)\"" }
 obtain-modflow = { depends-on = [
@@ -57,14 +57,13 @@ obtain-modflow = { depends-on = [
 git = "*"
 jupyterlab = "*"
 matplotlib = ">=1.4.0"
-numpy = ">=1.15.0"
+numpy = ">=1.15.0,<3.0"
 pip = "*"
 pytest = "*"
 python = ">=3.10,<3.13"
 
 # notebooks
 ipywidgets = "*"
-xugrid = "*"
 
 # flopy
 pymetis = "*"
