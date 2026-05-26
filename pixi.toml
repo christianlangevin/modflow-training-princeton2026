@@ -41,8 +41,10 @@ obtain-modflow = { depends-on = [
 ] }
 
 [target.win-64.tasks]
+clone-modflow-win = { cmd = "rm -rf modflow6; git clone https://github.com/MODFLOW-ORG/modflow6.git" }
 get-modflow-win = { cmd = "get-modflow :python --ostag win64ext --repo modflow6-nightly-build" }
 obtain-modflow = { depends-on = [
+  "clone-modflow-win",
   "update-dependencies",
   "update-flopy-dfn",
   "get-modflow-win",
