@@ -59,6 +59,7 @@ numpy = ">=1.15.0,<3.0"
 pip = "*"
 pytest = "*"
 python = ">=3.10,<3.13"
+pyvista = "==0.48"
 
 # notebooks
 ipywidgets = "*"
