@@ -1,5 +1,7 @@
 ![alt](images/header.png)
 
+[![CI](https://github.com/christianlangevin/modflow-training-princeton2026/actions/workflows/ci.yml/badge.svg)](https://github.com/christianlangevin/modflow-training-princeton2026/actions/workflows/ci.yml)
+
 # MODFLOW 6 and FloPy: Take Your Modeling Skills to the Next Level
 Training materials for the [MODFLOW 6 and FloPy workshop](https://igwmc.princeton.edu/groundwater-modeling-and-more/short-courses-more/#MODFLOW-6-and-FloPy) offered at the [2026 Groundwater Modeling and More Conference](https://igwmc.princeton.edu/groundwater-modeling-and-more/) at Princeton University.  
 
