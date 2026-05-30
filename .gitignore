@@ -19,8 +19,7 @@ win64ext*
 *.ucn
 *.bin
 
-
 .vscode/
 examples/notebooks/models/
 examples/notebooks/.figures/
-
+examples/notebooks/ff-netcdf/
