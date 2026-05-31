@@ -74,6 +74,9 @@ pyshp = "*"
 rasterio = "*"
 rasterstats = "*"
 xmipy = "*"
+pyarrow = "*"
+xarray = "*"
+netcdf4 = "*"
 
 [pypi-dependencies]
 modflow-devtools = { git = "https://github.com/MODFLOW-ORG/modflow-devtools.git", extras = ["dfn"] }
