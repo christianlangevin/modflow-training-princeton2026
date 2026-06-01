@@ -20,4 +20,7 @@ win64ext*
 *.bin
 
 
+.vscode/
 examples/notebooks/models/
+examples/notebooks/.figures/
+
