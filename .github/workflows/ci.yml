@@ -22,5 +22,8 @@ jobs:
         with:
           pixi-version: latest
 
+      - name: Install flopy4
+        run: pixi run install-flopy4
+
       - name: Check environment
-        run: pixi run python -c "import flopy, modflow_devtools, numpy, matplotlib, geopandas, rasterio, pyvista"
+        run: pixi run python -c "import flopy, flopy4, modflow_devtools, numpy, matplotlib, geopandas, rasterio, pyvista"
