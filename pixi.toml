@@ -20,6 +20,7 @@ install = { depends-on = [
   "obtain-programs",
   "test-installation",
 ] }
+install-flopy4 = "pip install 'git+https://github.com/modflowpy/pyphoenix-project.git'"
 
 # run jupyter lab
 jupyter = { cmd = "jupyter lab" }
@@ -40,7 +41,6 @@ obtain-modflow = { depends-on = [
   "install-modflow",
   "test-modflow",
 ] }
-install-flopy4 = "pip install 'git+https://github.com/modflowpy/pyphoenix-project.git'"
 
 [target.win-64.tasks]
 clone-modflow-win = { cmd = "rm -rf modflow6; git clone https://github.com/MODFLOW-ORG/modflow6.git" }
