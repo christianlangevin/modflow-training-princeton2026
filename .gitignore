@@ -18,6 +18,7 @@ win64ext*
 *.csv
 *.ucn
 *.bin
+mfsim.stdout
 
 .vscode/
 examples/notebooks/models/
