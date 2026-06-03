@@ -29,7 +29,7 @@ code = { cmd = "code ." }
 [target.unix.tasks]
 update-pc-files = { cmd = "python update_pc_files.py", cwd = "installation" }
 clone-modflow = "rm -rf modflow6/ && git clone https://github.com/MODFLOW-ORG/modflow6.git"
-setup-modflow = { cmd = "PKG_CONFIG_PATH=$PIXI_PROJECT_ROOT/.pixi/envs/default/lib/pkgconfig && rm -rf builddir && meson setup builddir -Ddebug=false -Dextended=true --prefix=$PIXI_PROJECT_ROOT/.pixi/envs/default/", cwd = "modflow6" }
+setup-modflow = { cmd = "PKG_CONFIG_PATH=$PIXI_PROJECT_ROOT/.pixi/envs/default/lib/pkgconfig && rm -rf builddir && meson setup builddir -Ddebug=false -Dextended=true --prefix=$PIXI_PROJECT_ROOT/.pixi/envs/default/ --libdir=lib", cwd = "modflow6" }
 install-modflow = { cmd = "meson install -C builddir", cwd = "modflow6" }
 test-modflow = { cmd = "meson test --verbose --no-rebuild -C builddir", cwd = "modflow6" }
 obtain-modflow = { depends-on = [
