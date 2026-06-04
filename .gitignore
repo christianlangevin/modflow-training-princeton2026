@@ -9,12 +9,13 @@ untitled*
 modflow6
 win64ext*
 ~$*
+.DS_Store
 
 # model data
 *.hds
 *.lst
 *.cbc
-*.grb
+# *.grb
 *.csv
 *.ucn
 *.bin
