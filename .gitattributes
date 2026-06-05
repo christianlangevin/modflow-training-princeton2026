@@ -13,3 +13,4 @@
 *.jpg binary
 *.nc binary
 *.pkl binary
+*.grb binary
