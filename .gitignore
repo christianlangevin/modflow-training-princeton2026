@@ -2,14 +2,25 @@
 .ipynb_checkpoints/
 installation/temp/
 installation/installation.log
+presentations/
+temp/
 untitled*
 .pixi
 modflow6
 win64ext*
 ~$*
+.DS_Store
 
 # model data
 *.hds
 *.lst
 *.cbc
-*.grb
+# *.grb
+*.csv
+*.ucn
+*.bin
+mfsim.stdout
+
+.vscode/
+examples/notebooks/models/
+examples/notebooks/.figures/
